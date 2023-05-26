@@ -1,5 +1,5 @@
 body {
-  font-size: .875rem;
+    font-size: .875rem;
 }
 
 .feather {
@@ -10,7 +10,7 @@ body {
 /*
  * Sidebar
  */
-
+ 
 .sidebar {
   position: fixed;
   top: 0;
@@ -39,7 +39,7 @@ body {
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
+  color: rgb(255, 255, 255);
 }
 
 .sidebar .nav-link .feather {
@@ -48,7 +48,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #217dff;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -89,4 +89,8 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.fixed_span_color {
+    color:rgb(133, 133, 133);
 }

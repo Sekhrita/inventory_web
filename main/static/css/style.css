@@ -1,3 +1,17 @@
+body {
+    border-top: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    background-size: cover;
+    background: linear-gradient(355deg, #ffc9b1 0, #ffad98 6.25%, 
+    #ffa69b 12.5%, #ff8a8a 18.75%, #ff8190 25%, #ff7d9b 31.25%, #ff83af 37.5%, 
+    #ff89c0 43.75%, #ff82cd 50%, #ff81dd 56.25%, #ff7cf4 62.5%, #ec80ff 68.75%, 
+    #c97dff 75%, #a179ff 81.25%, #6f80ff 87.5%, #4885ff 93.75%, #005eff 100%);
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -30,6 +44,9 @@
 .bi {
   vertical-align: -.125em;
   fill: currentColor;
+}
+.transparence_navbar_lateral{
+    background-color: rgba(0, 0, 0, 1);   
 }
 
 .nav-scroller {
@@ -71,5 +88,5 @@
 }
 
 .conteiner-img {
-    border: solid 10px rgba(0, 0, 0, 0.3);
+    border: solid 10px rgba(0, 0, 0, 0.3);   
 }
