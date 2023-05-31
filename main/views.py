@@ -20,4 +20,4 @@ def product_list(request):
             messages.error('Error al subir')
     
     product_form = ProductForm()
-    return render(request, 'main/product_list.html', {'products':products, 'formulario':product_form})
+    return render(request, 'main/product/product_list.html', {'products':products, 'formulario':product_form})
