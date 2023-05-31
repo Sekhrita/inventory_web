@@ -3,10 +3,10 @@ from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
 
+
 # Create your views here.
 def index(request):
     return render(request, 'main/index.html')
-
 
 # Create your views here.
 def product_list(request):
