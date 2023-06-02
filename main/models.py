@@ -91,3 +91,15 @@ class IngresoProducto(models.Model):
 
     def __str__(self):
         return self.producto
+    
+
+#Modelo: Usuario
+class Usuario(models.Model):
+    nombre = models.CharField(max_length = 100)
+    apellidoPaterno = models.CharField(max_length = 100)
+    apellidoMaterno = models.CharField(max_length = 100)
+    run = models.CharField(max_length = 100)
+    correo = models.EmailField(max_length = 254)
+
+    def __str__(self):
+        return self.run
