@@ -53,7 +53,8 @@ class Proveedor(models.Model):
 class Egreso(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    fecha = models.DateTimeField(auto_now_add = True)
+    fechaMovimiento = models.DateTimeField()
+    fechaSistema = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.producto
@@ -63,7 +64,8 @@ class Egreso(models.Model):
 class Ingreso(models.Model):
     producto = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    fecha = models.DateTimeField(auto_now_add = True)
+    fechaMovimiento = models.DateTimeField()
+    fechaSistema = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.producto
