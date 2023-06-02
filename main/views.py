@@ -10,14 +10,14 @@ def index(request):
 
 # Create your views here.
 def product_list(request):
-    products = Product.objects.all()
+    productos = Producto.objects.all()
     if request.method == 'POST':
-        product_form = ProductForm(request.POST)
-        if product_form.is_valid():
-            product_form.save()
+        productos_form = ProductForm(request.POST)
+        if productos_form.is_valid():
+            productos_form.save()
             messages.success(request, 'Subido')
         else:
             messages.error('Error al subir')
     
-    product_form = ProductForm()
-    return render(request, 'main/product/product_list.html', {'products':products, 'formulario':product_form})
+    productos_form = ProductForm()
+    return render(request, 'main/product/product_list.html', {'productos':productos, 'formulario':productos_form})
