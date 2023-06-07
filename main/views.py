@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from .models import Producto
 from .forms import ProductForm
 
 
 # Create your views here.
+@login_required
 def index(request):
     return render(request, 'main/index.html')
 
 # Create your views here.
+@login_required
 def product_list(request):
     productos = Producto.objects.all()
     if request.method == 'POST':
@@ -21,3 +25,4 @@ def product_list(request):
     
     productos_form = ProductForm()
     return render(request, 'main/product/product_list.html', {'productos':productos, 'formulario':productos_form})
+
