@@ -10,12 +10,26 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-        
-    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
     
-    <div class="navbar-nav">
-        <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="{% url 'logout' %}">Sign out</a>
-        </div>
+    <input class="nav-toggler form-control form-control-dark w-100 rounded-0 border-0 d-flex flex-row" type="text" placeholder="Search" aria-label="Search">
+
+    <div class="nav-toggler dropdown" style="padding: 16px;">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static '_img/icons/icon_user.png' %}" alt="user_icon" width="30" height="30" class="rounded-circle">
+            <span class="d-none d-sm-inline mx-1"><!--{{user.get_full_name}}--> Username</span>
+        </a>
+        <ul class="dropdown-menu text-small">
+            <li href=" " class="dropdown-item"><i class="fa fa-user-o"></i> Profile</li>
+            <li href=" " class="dropdown-item"><i class="fa fa-sliders"></i> Settings</li>
+            <div class="divider dropdown-divider"></div>
+            <li class="dropdown-item">
+                <a href="{% url 'logout' %}" class="d-flex align-items-center text-black text-decoration-none" id="dropdownUser1">
+                    <i class="material-icons">
+                        <img src="{% static '_img/icons/icon_logout.png' %}" alt="logout_icon" width="15" height="15">
+                    </i> 
+                     Logout
+                </a>
+            </li>
+        </ul>
     </div>
 </header>
