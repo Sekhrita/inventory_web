@@ -5,4 +5,4 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ('nombre','tipo','descripcion','stock')
+        fields = ('nombre','tipo','descripcion')

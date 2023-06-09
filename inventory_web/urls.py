@@ -19,9 +19,18 @@ from django.urls import path, include
 from main.views import *
 
 urlpatterns = [
-    ## páginas visitables
+    #sección principal de páginas visitables
     path('', index, name = 'index'),
     path('admin/', admin.site.urls),
+
+    #sección de producto
     path('product/', product_list, name = 'product_list'),
+    path('add_product/', add_product, name = 'add_product'),
+    path('edit_product/<int:pk>/', edit_product, name = 'edit_product'),
+    path('del_product/<int:pk>/', del_product, name = 'del_product'),
+
+    #sección de gestión de producto
+
+    #sección de usuario
     path('accounts/', include('django.contrib.auth.urls')),    
 ]

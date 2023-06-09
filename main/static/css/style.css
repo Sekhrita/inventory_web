@@ -1,8 +1,10 @@
 html {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
+    font-size: .875rem;
     height: 100%;
     border-top: 0;
     display: flex;
@@ -15,6 +17,18 @@ body {
     #ffa69b 12.5%, #ff8a8a 18.75%, #ff8190 25%, #ff7d9b 31.25%, #ff83af 37.5%, 
     #ff89c0 43.75%, #ff82cd 50%, #ff81dd 56.25%, #ff7cf4 62.5%, #ec80ff 68.75%, 
     #c97dff 75%, #a179ff 81.25%, #6f80ff 87.5%, #4885ff 93.75%, #005eff 100%);
+}/*https://cssgradient.io/*/
+
+
+nav {
+    width: 100%;
+    margin: auto;
+}
+
+.animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
 }
 
 .bd-placeholder-img {
@@ -96,6 +110,22 @@ body {
     border: solid 10px rgba(0, 0, 0, 0.3);   
 }
 
+.ventanas-gaps-divs{
+    background-color: rgb(0, 0, 0, 0.0);
+}
+
+.ventanas-section{
+    background-color: rgb(0, 0, 0,0.1);
+    border: 10px;
+    padding: 10px;
+}
+
 .ventanas-divs{
     background-color: rgb(0, 0, 0,0.2);
+}
+
+.formato-sections-divs{
+    padding: 30px;
+    border: 30px;
+    margin: 10px;
 }
