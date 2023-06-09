@@ -2,19 +2,19 @@
 
 {% load bootstrap5 %}
 
-{% block title %} Lista de productos {% endblock %}
+{% block title %} Tipos de productos {% endblock %}
 
 {% block content %}
     <div class="container-flex m-3">
         <div class="row">
             <div class="col border-bottom">
-                <h1>Listado de productos</h1>
+                <h1>Lista de categorías registradas</h1>
             </div>
         </div>
 
         <div class="row">
             <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
-                <a href="/add_product" class="text-decoration-none text-black"><button type="button" class="btn btn-success">+</button><b> Añadir producto</b></a>
+                <a href="/add_type" class="text-decoration-none text-black"><button type="button" class="btn btn-success">+</button><b> Añadir categoría</b></a>
             </div>
         </div>
 
@@ -26,24 +26,20 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Tipo</th>
-                                <th>Descripción</th>
                                 <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         
                         <tbody>
-                            {% for producto in productos %}
+                            {% for tipo in tipos %}
                                 <tr>
-                                    <td>{{ producto.id }}</td>
-                                    <td>{{ producto.nombre }}</td>
-                                    <td>{{ producto.tipo }}</td>
-                                    <td>{{ producto.descripcion }}</td>
-                                    <td>{{ producto.fecha }}</td>
+                                    <td>{{ tipo.id }}</td>
+                                    <td>{{ tipo.nombre }}</td>
+                                    <td>{{ tipo.fecha }}</td>
                                     <td>
-                                        <a class="btn btn-info btn-sm" href="{% url 'edit_product' producto.id %}">Editar</a>
-                                        <a class="btn btn-danger btn-sm" href="{% url 'del_product' producto.id %}">Eliminar</a>
+                                        <a class="btn btn-info btn-sm" href="{% url 'edit_type' tipo.id %}">Editar</a>
+                                        <a class="btn btn-danger btn-sm" href="{% url 'del_type' tipo.id %}">Eliminar</a>
                                     </td>
                                 </tr>
                             {% endfor %}

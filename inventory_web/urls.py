@@ -29,6 +29,12 @@ urlpatterns = [
     path('edit_product/<int:pk>/', edit_product, name = 'edit_product'),
     path('del_product/<int:pk>/', del_product, name = 'del_product'),
 
+    #sección de categoria
+    path('type/', list_type, name = 'list_type'),
+    path('add_type/', add_type, name = 'add_type'),
+    path('edit_type/<int:pk>/', edit_type, name = 'edit_type'),
+    path('del_type/<int:pk>/', del_type, name = 'del_type'),
+
     #sección de gestión de producto
 
     #sección de usuario

@@ -16,16 +16,13 @@
     <div class="nav-toggler dropdown" style="padding: 16px; margin-right: 25px;">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="{% static '_img/icons/icon_user.png' %}" alt="user_icon" width="30" height="30" class="rounded-circle">
-            <span class="d-none d-sm-inline mx-1"><!--{{user.get_full_name}}--> Username</span>
+            <span class="d-none d-sm-inline mx-1"> {{user.get_full_name}} Username</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-right text-small text-white">
-            <li href=" " class="dropdown-item disabled"><i class="fa fa-user-o"></i> Profile</li>
-            <li href=" " class="dropdown-item disabled"><i class="fa fa-sliders"></i> Settings</li>
-            <div class="divider dropdown-divider"></div>
             <li class="dropdown-item">
                 <a href="{% url 'logout' %}" class="d-flex align-items-center text-white text-decoration-none" id="dropdownUser1">
                     <span data-feather="log-out" class="align-text-bottom style=" style="padding-right: 1px;"></span>
-                    Logout
+                    Cerrar sesión
                 </a>
             </li>
         </ul>
