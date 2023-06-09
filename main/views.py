@@ -37,16 +37,14 @@ def edit_product(request, pk):
         productos_form = ProductForm(request.POST, instance=productos)
         if productos_form.is_valid():
             productos_form.save()
-            messages.success(request, 'Editado')
-            return redirect('/product')
+            messages.success(request, 'Cambios guardados')
+            #return redirect('/product')
         else:
-            messages.error('Error al editar')
+            messages.error('Error al realizar los cambios')
     else:
         productos_form = ProductForm(instance=productos)
-    context = {
-        'formulario': productos_form,
-    }
-    return render(request, 'main/product/edit_product.html', context)
+
+    return render(request, 'main/product/edit_product.html', {'formulario':productos_form})
 
 
 @login_required
@@ -54,7 +52,6 @@ def del_product(request, pk):
     productos = Producto.objects.get(id=pk)
     if request.method == 'POST':
         productos.delete()
-        messages.success(request, 'Eliminado')
         return redirect('/product')
 
     return render(request, 'main/product/del_product.html', {'productos': productos})
