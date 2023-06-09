@@ -2,12 +2,12 @@
 
 {% load bootstrap5 %}
 
-{% block title %} Eliminar tipo {% endblock %}
+{% block title %} Eliminar categoría {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col border-bottom">
-            <h1>Eliminar tipo </h1>
+            <h1>Eliminar categoría </h1>
         </div>
     </div>
 
@@ -15,12 +15,13 @@
         <hr>
         <form method="POST">
             <div class="alert alert-danger">
-                <h4>¿Estás seguro que quieres eliminar?</h4>
+                <h4>¿Estás seguro que quieres eliminar esta categoría?</h4>
             </div>
             {% csrf_token %}
             {{ formulario }}
             <a class="btn btn-secondary btn-sm" href="{% url 'list_type' %}">Cancelar</a>
             <input class="btn btn-danger btn-sm" type="submit" value="Confirmar">
+            <script>alert("Cuidado: Está eliminado un objeto");</script>
         </form>
     </div>
 {% endblock %}

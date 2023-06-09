@@ -2,7 +2,7 @@
 
 {% load bootstrap5 %}
 
-{% block title %} Tipos de productos {% endblock %}
+{% block title %} Lista de categorías {% endblock %}
 
 {% block content %}
     <div class="container-flex m-3">
@@ -26,7 +26,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -36,9 +35,9 @@
                                 <tr>
                                     <td>{{ tipo.id }}</td>
                                     <td>{{ tipo.nombre }}</td>
-                                    <td>{{ tipo.fecha }}</td>
                                     <td>
-                                        <a class="btn btn-info btn-sm" href="{% url 'edit_type' tipo.id %}">Editar</a>
+                                        <a class="btn btn-primary btn-sm" href="{% url 'vis_type' tipo.id %}">Ver</a>
+                                        <a class="btn btn-secondary btn-sm" href="{% url 'edit_type' tipo.id %}">Editar</a>
                                         <a class="btn btn-danger btn-sm" href="{% url 'del_type' tipo.id %}">Eliminar</a>
                                     </td>
                                 </tr>

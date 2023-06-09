@@ -24,14 +24,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #sección de producto
-    path('product/', product_list, name = 'product_list'),
+    path('product/', list_product, name = 'list_product'),
     path('add_product/', add_product, name = 'add_product'),
+    path('vis_product/<int:pk>/', vis_product, name = 'vis_product'),
     path('edit_product/<int:pk>/', edit_product, name = 'edit_product'),
     path('del_product/<int:pk>/', del_product, name = 'del_product'),
 
     #sección de categoria
     path('type/', list_type, name = 'list_type'),
     path('add_type/', add_type, name = 'add_type'),
+    path('vis_type/<int:pk>/', vis_type, name = 'vis_type'),
     path('edit_type/<int:pk>/', edit_type, name = 'edit_type'),
     path('del_type/<int:pk>/', del_type, name = 'del_type'),
 

@@ -28,7 +28,6 @@
                                 <th>Nombre</th>
                                 <th>Tipo</th>
                                 <th>Descripción</th>
-                                <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -40,9 +39,9 @@
                                     <td>{{ producto.nombre }}</td>
                                     <td>{{ producto.tipo }}</td>
                                     <td>{{ producto.descripcion }}</td>
-                                    <td>{{ producto.fecha }}</td>
                                     <td>
-                                        <a class="btn btn-info btn-sm" href="{% url 'edit_product' producto.id %}">Editar</a>
+                                        <a class="btn btn-primary btn-sm" href="{% url 'vis_product' producto.id %}">Ver</a>
+                                        <a class="btn btn-secondary btn-sm" href="{% url 'edit_product' producto.id %}">Editar</a>
                                         <a class="btn btn-danger btn-sm" href="{% url 'del_product' producto.id %}">Eliminar</a>
                                     </td>
                                 </tr>

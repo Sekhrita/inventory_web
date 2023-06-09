@@ -1,9 +1,16 @@
 from django.db import models
+from django.utils import timezone
 
 #Modelo: Tipo de producto
 class Tipo(models.Model):
+    #información principal
     nombre = models.CharField(max_length = 100)
-    fecha = models.DateTimeField(auto_now_add = True)
+    descripcion = models.TextField(default="---")
+    
+    #información expandida
+    fecha_creacion = models.DateTimeField(auto_now_add = True)
+    fecha_edicion = models.DateTimeField(auto_now=True)
+    encargado = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
         return self.nombre
@@ -11,12 +18,18 @@ class Tipo(models.Model):
 
 #Modelo: Producto
 class Producto(models.Model):
+    #información principal
     nombre = models.CharField(max_length = 100)
     tipo = models.ForeignKey(Tipo, on_delete = models.CASCADE)
-    descripcion = models.TextField()
-    fecha = models.DateTimeField(auto_now_add = True)
+    descripcion = models.TextField(default="---")
 
-    stock = models.PositiveBigIntegerField()
+    #información principal: ATRIBUTO VITAL
+    stock = models.PositiveBigIntegerField(default=0)
+
+    #información expandida
+    fecha_creacion = models.DateTimeField(auto_now_add = True)
+    fecha_edicion = models.DateTimeField(auto_now=True)
+    encargado = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
         return self.nombre
@@ -53,7 +66,7 @@ class Proveedor(models.Model):
 class Egreso(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    fechaMovimiento = models.DateTimeField()
+    fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
@@ -64,7 +77,7 @@ class Egreso(models.Model):
 class Ingreso(models.Model):
     producto = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    fechaMovimiento = models.DateTimeField()
+    fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

@@ -1,0 +1,28 @@
+{% extends 'main/index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load bootstrap5 %}
+
+{% block title %} Visualizar producto {% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col border-bottom">
+            <h1>Visualizar producto</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3> ->Nombre: {{producto.nombre}}</h3><br>
+            <h3> ->Tipo: {{producto.tipo}}</h3><br>
+            <h3> ->Descripción: {{producto.descripcion}}</h3><br>
+            <h3> ->Stock: {{producto.stock}}</h3><br>
+            <h3> ->Fecha de creación: {{producto.fecha_creacion}}</h3><br>
+            <h3> ->Fecha de edición: {{producto.fecha_edicion}}</h3><br>
+            <h3> ->Encargado: {{producto.encargado}}</h3><br> 
+        </div>
+    </div>
+{% endblock %}
