@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 #Modelo: Tipo de producto
 class Tipo(models.Model):
@@ -106,15 +108,3 @@ class IngresoProducto(models.Model):
 
     def __str__(self):
         return self.producto
-    
-
-#Modelo: Usuario
-class Usuario(models.Model):
-    nombre = models.CharField(max_length = 100)
-    apellidoPaterno = models.CharField(max_length = 100)
-    apellidoMaterno = models.CharField(max_length = 100)
-    run = models.CharField(max_length = 100)
-    correo = models.EmailField(max_length = 254)
-
-    def __str__(self):
-        return self.run

@@ -6,6 +6,7 @@ from .models import Producto
 from .models import Tipo
 from .forms import ProductForm
 from .forms import TypeForm
+from datetime import datetime
 
 
 # Create your views here.
@@ -55,7 +56,10 @@ def edit_product(request, pk):
     if request.method == 'POST':
         productos_form = ProductForm(request.POST, instance=producto)
         if productos_form.is_valid():
-            productos_form.save()
+            temp = productos_form.save(commit=False)
+            fecha_actual = datetime.now()
+            temp.fecha_edicion = fecha_actual
+            temp.save()
             messages.success(request, 'Cambios guardados')
         else:
             messages.error('Error al realizar los cambios')
@@ -124,7 +128,10 @@ def edit_type(request, pk):
     if request.method == 'POST':
         tipos_form = TypeForm(request.POST, instance=tipo)
         if tipos_form.is_valid():
-            tipos_form.save()
+            temp = tipos_form.save(commit=False)
+            fecha_actual = datetime.now()
+            temp.fecha_edicion = fecha_actual
+            temp.save()
             messages.success(request, 'Cambios guardados')
         else:
             messages.error('Error al realizar los cambios')
