@@ -15,7 +15,7 @@
         <hr>
         <form method="POST">
             <div class="alert alert-danger">
-                <h4>¿Estás seguro que quieres eliminar {{ producto }}?</h4>
+                <h4>¿Estás seguro que quieres eliminar "<b><i>{{ producto.nombre }}</i></b>" de los productos?</h4>
             </div>
             {% csrf_token %}
             {{ formulario }}

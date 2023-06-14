@@ -15,7 +15,7 @@
         <hr>
         <form method="POST">
             <div class="alert alert-danger">
-                <h4>¿Estás seguro que quieres eliminar esta categoría?</h4>
+                <h4>¿Estás seguro que quieres eliminar "<b><i>{{ tipo.nombre }}</i></b>" como categoría?</h4>
             </div>
             {% csrf_token %}
             {{ formulario }}

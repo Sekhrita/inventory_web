@@ -13,11 +13,14 @@ from .forms import TypeForm
 def index(request):
     return render(request, 'main/index.html')
 
-# Create your views here.
 @login_required
 def list_product(request):
     productos = Producto.objects.all()
-    return render(request, 'main/product/list_product.html', {'productos':productos})
+    
+    contexto = {
+        'productos':productos
+    }   
+    return render(request, 'main/product/list_product.html', contexto)
 
 @login_required
 def add_product(request):
@@ -31,45 +34,62 @@ def add_product(request):
         else:
             messages.error('Error al subir')
 
-
     productos_form = ProductForm()
-    return render(request, 'main/product/add_product.html', {'formulario':productos_form})
+    contexto = {
+        'formulario':productos_form,
+    }   
+    return render(request, 'main/product/add_product.html', contexto)
 
 @login_required
 def vis_product(request, pk):
     producto = Producto.objects.get(id=pk)
 
-    return render(request, 'main/product/vis_product.html', {'producto':producto})
+    contexto = {
+        'producto': producto,
+    }    
+    return render(request, 'main/product/vis_product.html', contexto)
 
 @login_required
 def edit_product(request, pk):
-    productos = Producto.objects.get(id=pk)
+    producto = Producto.objects.get(id=pk)
     if request.method == 'POST':
-        productos_form = ProductForm(request.POST, instance=productos)
+        productos_form = ProductForm(request.POST, instance=producto)
         if productos_form.is_valid():
             productos_form.save()
             messages.success(request, 'Cambios guardados')
-            #return redirect('/product')
         else:
             messages.error('Error al realizar los cambios')
     else:
-        productos_form = ProductForm(instance=productos)
+        productos_form = ProductForm(instance=producto)
 
-    return render(request, 'main/product/edit_product.html', {'formulario':productos_form})
+    contexto = {
+        'formulario':productos_form,
+        'producto': producto,
+    }
+    return render(request, 'main/product/edit_product.html', contexto)
 
 @login_required
 def del_product(request, pk):
-    productos = Producto.objects.get(id=pk)
+    producto = Producto.objects.get(id=pk)
     if request.method == 'POST':
-        productos.delete()
+        producto.delete()
         return redirect('/product')
 
-    return render(request, 'main/product/del_product.html', {'productos': productos})
+    contexto = {
+        'producto': producto,
+    }
+    return render(request, 'main/product/del_product.html', contexto)
+
+
 
 @login_required
 def list_type(request):
     tipos = Tipo.objects.all()
-    return render(request, 'main/type/list_type.html', {'tipos':tipos})
+
+    contexto = {
+        'tipos': tipos,
+    }
+    return render(request, 'main/type/list_type.html', contexto)
 
 @login_required
 def add_type(request):
@@ -84,33 +104,47 @@ def add_type(request):
             messages.error('Error al subir')
 
     tipos_form = TypeForm()
-    return render(request, 'main/type/add_type.html', {'formulario':tipos_form})
+    contexto = {
+        'formulario': tipos_form,
+    }
+    return render(request, 'main/type/add_type.html', contexto)
 
 @login_required
 def vis_type(request, pk):
     tipo = Tipo.objects.get(id=pk)
-    return render(request, 'main/type/vis_type.html', {'tipo':tipo})
+
+    contexto = {
+        'tipo': tipo,
+    }
+    return render(request, 'main/type/vis_type.html', contexto)
 
 @login_required
 def edit_type(request, pk):
-    tipos = Tipo.objects.get(id=pk)
+    tipo = Tipo.objects.get(id=pk)
     if request.method == 'POST':
-        tipos_form = TypeForm(request.POST, instance=tipos)
+        tipos_form = TypeForm(request.POST, instance=tipo)
         if tipos_form.is_valid():
             tipos_form.save()
             messages.success(request, 'Cambios guardados')
         else:
             messages.error('Error al realizar los cambios')
     else:
-        tipos_form = TypeForm(instance=tipos)
+        tipos_form = TypeForm(instance=tipo)
 
-    return render(request, 'main/type/edit_type.html', {'formulario':tipos_form})
+    contexto = {
+        'formulario':tipos_form,
+        'tipo': tipo,
+    }
+    return render(request, 'main/type/edit_type.html', contexto)
 
 @login_required
 def del_type(request, pk):
-    tipos = Tipo.objects.get(id=pk)
+    tipo = Tipo.objects.get(id=pk)
     if request.method == 'POST':
-        tipos.delete()
+        tipo.delete()
         return redirect('/type')
 
-    return render(request, 'main/type/del_type.html', {'tipos':tipos})
+    contexto = {
+        'tipo': tipo,
+    }
+    return render(request, 'main/type/del_type.html', contexto)
