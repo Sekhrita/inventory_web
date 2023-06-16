@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+
 from .models import Producto
 from .models import Tipo
+
 from .forms import ProductForm
 from .forms import TypeForm
+from .forms import UserForm
+
 from datetime import datetime
 
 
@@ -155,3 +159,24 @@ def del_type(request, pk):
         'tipo': tipo,
     }
     return render(request, 'main/type/del_type.html', contexto)
+
+
+def registro(request):
+    if request.method == 'POST':
+        usuario_form = UserForm(request.POST)
+        if usuario_form.is_valid():
+            usuario_form.save()
+
+            user = authenticate(username=usuario_form.cleaned_data['username'],
+                                 password=usuario_form.cleaned_data['password1'])
+
+
+            login(request, user)
+            return redirect('index')
+    else:
+        usuario_form = UserForm()
+
+    contexto = {
+        'formulario': usuario_form
+    }
+    return render(request, 'registration/registro.html', contexto)

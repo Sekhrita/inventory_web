@@ -40,5 +40,7 @@ urlpatterns = [
     #sección de gestión de producto
 
     #sección de usuario
-    path('accounts/', include('django.contrib.auth.urls')),    
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('registro', registro, name = 'registro'),
+
 ]
