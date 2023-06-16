@@ -5,9 +5,13 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Producto
 from .models import Tipo
+from .models import Cliente
+from .models import Proveedor
 
 from .forms import ProductForm
 from .forms import TypeForm
+from .forms import ClientForm
+from .forms import ProviderForm
 from .forms import UserForm
 
 from datetime import datetime
@@ -88,8 +92,6 @@ def del_product(request, pk):
     }
     return render(request, 'main/product/del_product.html', contexto)
 
-
-
 @login_required
 def list_type(request):
     tipos = Tipo.objects.all()
@@ -160,6 +162,127 @@ def del_type(request, pk):
     }
     return render(request, 'main/type/del_type.html', contexto)
 
+@login_required
+def list_client(request):
+    clientes = Cliente.objects.all()
+
+    contexto = {
+        'clientes': clientes,
+    }
+    return render(request, 'main/client/list_client.html', contexto)
+
+@login_required
+def add_client(request):
+    if request.method == 'POST':
+        clientes_form = ClientForm(request.POST)
+        if clientes_form.is_valid():
+            temp = clientes_form.save(commit=False)
+            temp.encargado = request.user
+            temp.save()
+            messages.success(request, 'Cliente agregado con éxito.')
+        else:
+            messages.error('Error al subir')
+
+    clientes_form = ClientForm()
+    contexto = {
+        'formulario': clientes_form,
+    }
+    return render(request, 'main/client/add_client.html', contexto)
+
+@login_required
+def edit_client(request, pk):
+    cliente = Cliente.objects.get(id=pk)
+    if request.method == 'POST':
+        clientes_form = ClientForm(request.POST, instance=cliente)
+        if clientes_form.is_valid():
+            temp = clientes_form.save(commit=False)
+            fecha_actual = datetime.now()
+            temp.fecha_edicion = fecha_actual
+            temp.save()
+            messages.success(request, 'Cambios guardados')
+        else:
+            messages.error('Error al realizar los cambios')
+    else:
+        clientes_form = ClientForm(instance=cliente)
+
+    contexto = {
+        'formulario':clientes_form,
+        'cliente': cliente,
+    }
+    return render(request, 'main/client/edit_client.html', contexto)
+
+@login_required
+def del_client(request, pk):
+    cliente = Cliente.objects.get(id=pk)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('/client')
+
+    contexto = {
+        'cliente': cliente,
+    }
+    return render(request, 'main/client/del_client.html', contexto)
+
+@login_required
+def list_provider(request):
+    proveedores = Proveedor.objects.all()
+    
+    contexto = {
+        'proveedores':proveedores
+    }   
+    return render(request, 'main/provider/list_provider.html', contexto)
+
+@login_required
+def add_provider(request):
+    if request.method == 'POST':
+        proveedores_form = ProviderForm(request.POST)
+        if proveedores_form.is_valid():
+            temp = proveedores_form.save(commit=False)
+            temp.encargado = request.user
+            temp.save()
+            messages.success(request, 'Proveedor agregado con éxito.')
+        else:
+            messages.error('Error al subir')
+
+    proveedores_form = ProviderForm()
+    contexto = {
+        'formulario':proveedores_form ,
+    }   
+    return render(request, 'main/provider/add_provider.html', contexto)
+
+@login_required
+def edit_provider(request, pk):
+    proveedor = Proveedor.objects.get(id=pk)
+    if request.method == 'POST':
+        proveedores_form = ProviderForm(request.POST, instance=proveedor)
+        if proveedores_form .is_valid():
+            temp = proveedores_form.save(commit=False)
+            fecha_actual = datetime.now()
+            temp.fecha_edicion = fecha_actual
+            temp.save()
+            messages.success(request, 'Cambios guardados')
+        else:
+            messages.error('Error al realizar los cambios')
+    else:
+        proveedores_form  = ProviderForm(instance=proveedor)
+
+    contexto = {
+        'formulario':proveedores_form ,
+        'proveedor': proveedor,
+    }
+    return render(request, 'main/provider/edit_provider.html', contexto)
+
+@login_required
+def del_provider(request, pk):
+    proveedor = Proveedor.objects.get(id=pk)
+    if request.method == 'POST':
+        proveedor.delete()
+        return redirect('/provider')
+
+    contexto = {
+        'proveedor': proveedor,
+    }
+    return render(request, 'main/provider/del_provider.html', contexto)
 
 def registro(request):
     if request.method == 'POST':

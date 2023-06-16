@@ -82,11 +82,14 @@ WSGI_APPLICATION = 'inventory_web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':  'lab_bioinfo',
-        'USER': 'root',
-        'PASSWORD': '5337489354760',
+        'NAME':  'proyecto3',
+        'USER': 'test1',
+        'PASSWORD': 'Test1234!%',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {
+            'unix_socket': '/var/run/mysqld/mysqld.sock',
+        },
     }
 }
 

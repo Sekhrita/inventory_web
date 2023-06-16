@@ -38,6 +38,19 @@ urlpatterns = [
     path('edit_type/<int:pk>/', edit_type, name = 'edit_type'),
     path('del_type/<int:pk>/', del_type, name = 'del_type'),
 
+    #sección de cliente
+    path('client/', list_client, name = 'list_client'),
+    path('add_client/', add_client, name = 'add_client'),
+    path('edit_client/<int:pk>/', edit_client, name = 'edit_client'),
+    path('del_client/<int:pk>/', del_client, name = 'del_client'),
+
+    #sección de proveedor
+    path('provider/', list_provider, name = 'list_provider'),
+    path('add_provider/', add_provider, name = 'add_provider'),
+    path('edit_provider/<int:pk>/', edit_provider, name = 'edit_provider'),
+    path('del_provider/<int:pk>/', del_provider, name = 'del_provider'),
+    
+
     #sección de gestión de producto
 
     #sección de usuario

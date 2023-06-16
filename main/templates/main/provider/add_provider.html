@@ -1,0 +1,29 @@
+{% extends 'main/index.html' %}
+
+{% load bootstrap5 %}
+
+{% block title %} Agregar proveedor {% endblock %}
+
+{% block content %}
+    <div class="container-flex m-3">
+        <div class="row">
+            <div class="col border-bottom">
+                <h1>Agregar proveedor </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% bootstrap_messages %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form formulario %}
+                    {% buttons %}
+                        <button class="btn btn-primary" type="submit">Guardar</button>
+                        <a href="/provider"><button type="button" class="btn btn-dark"> Volver</button></a>
+                    {% endbuttons %}
+                 </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

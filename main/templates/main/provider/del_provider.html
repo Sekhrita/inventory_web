@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+
+{% load bootstrap5 %}
+
+{% block title %} Eliminar proveedor {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col border-bottom">
+            <h1>Eliminar proveedor </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+        <form method="POST">
+            <div class="alert alert-danger">
+                <h4>¿Estás seguro que quieres eliminar "{{ proveedor.nombre }} con RUT [{{ proveedor.rut }}]" como proveedor?</h4>
+            </div>
+            {% csrf_token %}
+            {{ formulario }}
+            <a class="btn btn-secondary btn-sm" href="{% url 'list_provider' %}">Cancelar</a>
+            <input class="btn btn-danger btn-sm" type="submit" value="Confirmar">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+
+{% load bootstrap5 %}
+
+{% block title %} Eliminar cliente {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col border-bottom">
+            <h1>Eliminar cliente</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+        <form method="POST">
+            <div class="alert alert-danger">
+                <h4>¿Estás seguro que quieres eliminar "<b>{{ cliente.nombre }} {{ cliente.apellidoPaterno }}</b>" de los productos?</h4>
+            </div>
+            {% csrf_token %}
+            {{ formulario }}
+            <a class="btn btn-secondary btn-sm" href="{% url 'list_client' %}">Cancelar</a>
+            <input class="btn btn-danger btn-sm" type="submit" value="Confirmar">
+        </form>
+    </div>
+{% endblock %}
