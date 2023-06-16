@@ -170,7 +170,7 @@ def registro(request):
             user = authenticate(username=usuario_form.cleaned_data['username'],
                                  password=usuario_form.cleaned_data['password1'])
 
-
+            
             login(request, user)
             return redirect('index')
     else:
