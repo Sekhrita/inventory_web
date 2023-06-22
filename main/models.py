@@ -70,6 +70,7 @@ class Egreso(models.Model):
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
     fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
+    gestor = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
         return self.producto
@@ -77,10 +78,11 @@ class Egreso(models.Model):
 
 #Modelo: Ingreso
 class Ingreso(models.Model):
-    producto = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
+    proveedor = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
     fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
+    gestor = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
         return self.producto

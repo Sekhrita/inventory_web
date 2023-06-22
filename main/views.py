@@ -13,6 +13,8 @@ from .forms import TypeForm
 from .forms import ClientForm
 from .forms import ProviderForm
 from .forms import UserForm
+from .forms import IngresoForm
+from .forms import EgresoForm
 
 from datetime import datetime
 
@@ -23,13 +25,24 @@ def index(request):
     return render(request, 'main/index.html')
 
 @login_required
+def explain_lab(request):
+    return render(request, 'main/explain_lab.html')
+
+@login_required
+def show_lab(request):
+    return render(request, 'main/show_lab.html')
+
+
+
+
+@login_required
 def list_product(request):
     productos = Producto.objects.all()
     
     contexto = {
         'productos':productos
     }   
-    return render(request, 'main/product/list_product.html', contexto)
+    return render(request, 'main/product/product/list_product.html', contexto)
 
 @login_required
 def add_product(request):
@@ -47,7 +60,7 @@ def add_product(request):
     contexto = {
         'formulario':productos_form,
     }   
-    return render(request, 'main/product/add_product.html', contexto)
+    return render(request, 'main/product/product/add_product.html', contexto)
 
 @login_required
 def vis_product(request, pk):
@@ -56,7 +69,7 @@ def vis_product(request, pk):
     contexto = {
         'producto': producto,
     }    
-    return render(request, 'main/product/vis_product.html', contexto)
+    return render(request, 'main/product/product/vis_product.html', contexto)
 
 @login_required
 def edit_product(request, pk):
@@ -78,7 +91,7 @@ def edit_product(request, pk):
         'formulario':productos_form,
         'producto': producto,
     }
-    return render(request, 'main/product/edit_product.html', contexto)
+    return render(request, 'main/product/product/edit_product.html', contexto)
 
 @login_required
 def del_product(request, pk):
@@ -90,7 +103,10 @@ def del_product(request, pk):
     contexto = {
         'producto': producto,
     }
-    return render(request, 'main/product/del_product.html', contexto)
+    return render(request, 'main/product/product/del_product.html', contexto)
+
+
+
 
 @login_required
 def list_type(request):
@@ -162,6 +178,9 @@ def del_type(request, pk):
     }
     return render(request, 'main/type/del_type.html', contexto)
 
+
+
+
 @login_required
 def list_client(request):
     clientes = Cliente.objects.all()
@@ -222,6 +241,9 @@ def del_client(request, pk):
         'cliente': cliente,
     }
     return render(request, 'main/client/del_client.html', contexto)
+
+
+
 
 @login_required
 def list_provider(request):
@@ -284,6 +306,9 @@ def del_provider(request, pk):
     }
     return render(request, 'main/provider/del_provider.html', contexto)
 
+
+
+
 def registro(request):
     if request.method == 'POST':
         usuario_form = UserForm(request.POST)
@@ -303,3 +328,75 @@ def registro(request):
         'formulario': usuario_form
     }
     return render(request, 'registration/registro.html', contexto)
+
+
+
+@login_required
+def management(request):
+    productos = Producto.objects.all()
+    
+    contexto = {
+        'productos':productos
+    }   
+    return render(request, 'main/product/product_gestion/management.html', contexto)
+
+@login_required
+def in_product(request):
+    return render(request, 'main/product/product_gestion/in_product/in_product.html')
+
+@login_required
+def out_product(request):  
+    return render(request, 'main/product/product_gestion/out_product/out_product.html')
+
+@login_required
+def entry(request, pk):  
+    producto = Producto.objects.get(id=pk)
+
+    if request.method == 'POST':
+        ingreso_form = IngresoForm(request.POST)
+        if ingreso_form.is_valid():
+            temp = ingreso_form.save(commit=False)
+            temp.producto = producto
+            temp.gestor = request.user
+            temp.save()
+            messages.success(request, 'Producto agregado con éxito.')
+        else:
+            messages.error('Error al subir')    
+
+    ingreso_form = IngresoForm()
+    contexto = {
+        'formulario': ingreso_form,
+        'producto': producto,
+    }    
+    return render(request, 'main/product/product_gestion/in_product/entry.html', contexto)
+
+@login_required
+def discharge(request, pk):  
+    producto = Producto.objects.get(id=pk)
+
+    if request.method == 'POST':
+        egreso_form = EgresoForm(request.POST)
+        if egreso_form.is_valid():
+            temp = egreso_form.save(commit=False)
+            temp.producto = producto
+            temp.gestor = request.user
+            temp.save()
+            messages.success(request, 'Producto agregado con éxito.')
+        else:
+            messages.error('Error al subir')    
+
+    egreso_form = EgresoForm()
+    contexto = {
+        'formulario': egreso_form,
+        'producto': producto,
+    }    
+    return render(request, 'main/product/product_gestion/out_product/discharge.html', contexto)
+
+@login_required
+def list_management(request):
+    return render(request, 'main/product/product_gestion/list_management.html')
+
+@login_required
+def vis_management(request):
+    return render(request, 'main/product/product_gestion/vis_management.html')
+
