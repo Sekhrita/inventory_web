@@ -386,18 +386,34 @@ def discharge(request, pk):
 
     if request.method == 'POST':
         egreso_form = EgresoForm(request.POST)
-        if egreso_form.is_valid():
-            temp = egreso_form.save(commit=False)
-            temp.producto = producto
-            temp.gestor = request.user
-            temp.save()
-            messages.success(request, 'Stock retirado con éxito.')
+        egresoProducto_form = EgresoProductoForm(request.POST)
+        if egreso_form.is_valid() and egresoProducto_form.is_valid():
+            temp1 = egreso_form.save(commit=False)
+            temp1.producto = producto
+            temp1.gestor = request.user
+            temp1.save()
+
+            temp2 = egresoProducto_form.save(commit=False)
+            temp2.producto = producto
+            temp2.egreso = temp1
+            
+            try:
+                producto.stock = producto.stock - temp2.cantEgreso
+                producto.save()
+                messages.success(request, 'Stock retirado con éxito.')
+            except:
+                messages.error(request, 'Error.')
+
+
+            
         else:
             messages.error('Error al subir')    
 
     egreso_form = EgresoForm()
+    egresoProducto_form = EgresoProductoForm()
     contexto = {
-        'formulario': egreso_form,
+        'formulario_1': egreso_form,
+        'formulario_2': egresoProducto_form,
         'producto': producto,
     }    
     return render(request, 'main/product/product_gestion/out_product/discharge.html', contexto)

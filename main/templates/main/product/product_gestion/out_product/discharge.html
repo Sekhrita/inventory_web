@@ -17,7 +17,9 @@
                 {% bootstrap_messages %}
                 <form method="POST">
                     {% csrf_token %}
-                    {% bootstrap_form formulario %}
+                    {% bootstrap_form formulario_1 %}
+                 
+                    {% bootstrap_form formulario_2 %}
                     {% buttons %}
                         <button class="btn btn-primary" type="submit">Guardar</button>
                         <a href="/management"><button type="button" class="btn btn-dark"> Volver</button></a>
