@@ -22,7 +22,7 @@ class Tipo(models.Model):
 class Producto(models.Model):
     #información principal
     nombre = models.CharField(max_length = 100)
-    tipo = models.ForeignKey(Tipo, on_delete = models.CASCADE)
+    tipo = models.ForeignKey(Tipo, on_delete = models.RESTRICT)
     descripcion = models.TextField(default="---")
 
     #información principal: ATRIBUTO VITAL

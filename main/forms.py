@@ -8,6 +8,7 @@ from .models import Cliente
 from .models import Proveedor
 from .models import Ingreso
 from .models import Egreso
+from .models import IngresoProducto
 
 class ProductForm(forms.ModelForm):
 
@@ -44,6 +45,12 @@ class IngresoForm(forms.ModelForm):
     class Meta:
         model = Ingreso
         fields = ('proveedor',)
+
+class IngresoProductoForm(forms.ModelForm):
+
+    class Meta:
+        model = IngresoProducto
+        fields = ('cantIngreso',)
 
 class EgresoForm(forms.ModelForm):
 

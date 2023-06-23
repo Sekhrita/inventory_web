@@ -14,10 +14,10 @@ from .forms import ClientForm
 from .forms import ProviderForm
 from .forms import UserForm
 from .forms import IngresoForm
+from .forms import IngresoProductoForm
 from .forms import EgresoForm
 
 from datetime import datetime
-
 
 # Create your views here.
 @login_required
@@ -354,18 +354,27 @@ def entry(request, pk):
 
     if request.method == 'POST':
         ingreso_form = IngresoForm(request.POST)
-        if ingreso_form.is_valid():
-            temp = ingreso_form.save(commit=False)
-            temp.producto = producto
-            temp.gestor = request.user
-            temp.save()
-            messages.success(request, 'Producto agregado con éxito.')
+        ingresoProducto_form = IngresoProductoForm(request.POST)
+        if ingreso_form.is_valid() and ingresoProducto_form.is_valid():
+            temp1 = ingreso_form.save(commit=False)
+            temp1.producto = producto
+            temp1.gestor = request.user
+            temp1.save()
+
+            temp2 = ingresoProducto_form.save(commit=False)
+            temp2.producto = producto
+            temp2.egreso = temp1
+            producto.stock = producto.stock + temp2.cantIngreso
+            producto.save()
+            messages.success(request, 'Stock agregado con éxito.')
         else:
             messages.error('Error al subir')    
 
     ingreso_form = IngresoForm()
+    ingresoProducto_form = IngresoProductoForm()
     contexto = {
-        'formulario': ingreso_form,
+        'formulario_1': ingreso_form,
+        'formulario_2': ingresoProducto_form,
         'producto': producto,
     }    
     return render(request, 'main/product/product_gestion/in_product/entry.html', contexto)
@@ -381,7 +390,7 @@ def discharge(request, pk):
             temp.producto = producto
             temp.gestor = request.user
             temp.save()
-            messages.success(request, 'Producto agregado con éxito.')
+            messages.success(request, 'Stock retirado con éxito.')
         else:
             messages.error('Error al subir')    
 
