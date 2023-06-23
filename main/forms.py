@@ -7,8 +7,9 @@ from .models import Tipo
 from .models import Cliente
 from .models import Proveedor
 from .models import Ingreso
-from .models import Egreso
 from .models import IngresoProducto
+from .models import Egreso
+from .models import EgresoProducto
 
 class ProductForm(forms.ModelForm):
 
@@ -57,3 +58,9 @@ class EgresoForm(forms.ModelForm):
     class Meta:
         model = Egreso
         fields = ('cliente',)
+
+class EgresoProductoForm(forms.ModelForm):
+
+    class Meta:
+        model = EgresoProducto
+        fields = ('cantEgreso',)

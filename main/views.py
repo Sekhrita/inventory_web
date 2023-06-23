@@ -16,6 +16,7 @@ from .forms import UserForm
 from .forms import IngresoForm
 from .forms import IngresoProductoForm
 from .forms import EgresoForm
+from .forms import EgresoProductoForm
 
 from datetime import datetime
 
