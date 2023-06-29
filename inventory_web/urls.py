@@ -47,12 +47,24 @@ urlpatterns = [
     #Sección: Movimientos de inventario (manejar producto)
     path('entry/<int:pk>/', entry, name = 'entry'),
     path('discharge/<int:pk>/', discharge, name = 'discharge'),
-    path('in_product/', in_product, name = 'in_product'),
-    path('out_product/', out_product, name = 'out_product'),
+
+    #Sección: Movimientos de inventario (seleccionar producto en caso de carrito)
+    path('cart_management_entry/<int:pk>/', cart_management_entry, name = 'cart_management_entry'),
+    path('cart_management_discharge/<int:pk>/', cart_management_discharge, name = 'cart_management_discharge'),
+
+    #Sección: Movimientos de inventario (manejar producto en caso de carrito)
+    path('in_product/<int:cart>/<int:pk>/', in_product, name = 'in_product'),
+    path('out_product/<int:cart>/<int:pk>/', out_product, name = 'out_product'),
+
+    #Sección: Ver carrito
+    path('vis_cart_management_entry/<int:cart>', vis_cart_management_entry, name='vis_cart_management_entry'),
+    path('vis_cart_management_discharge/<int:cart>', vis_cart_management_discharge, name='vis_cart_management_discharge'),
+
+    #Sección: Efectuar carrito
+    path('confirm_cart_management_entry/<int:cart>', confirm_cart_management_entry, name='confirm_cart_management_entry'),
+    path('confirm_cart_management_discharge/<int:cart>', confirm_cart_management_discharge, name='confirm_cart_management_discharge'),
 
     #Sección: Movimientos de inventario (historial)
-    path('list_management/', list_management, name = 'list_management'),
-    path('vis_management/', vis_management, name = 'vis_management'),
 
 
     #Sección: Datos (cliente)
@@ -75,7 +87,6 @@ urlpatterns = [
     #Sección: Login (usuario)
     path('accounts/', include('django.contrib.auth.urls')),
     path('registro', registro, name = 'registro'),
-
 ]
 
 if settings.DEBUG:

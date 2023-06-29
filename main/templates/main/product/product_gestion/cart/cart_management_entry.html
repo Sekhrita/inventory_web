@@ -13,6 +13,17 @@
         </div>
 
         <div class="row">
+            <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success" type="submit" name="efectuar_carrito_ingreso"><span data-feather="upload" class="align-text-bottom"></span> Efectuar carrito</button>
+                    <button class="btn btn-primary" type="submit" name="ver_carrito_ingreso"><span data-feather="eye" class="align-text-bottom"></span> Ver carrito</button>
+                    <button class="btn btn-danger" type="submit" name="eliminar_carrito_ingreso"><span data-feather="shopping-cart" class="align-text-bottom"></span> Eliminar carrito</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col">
                 {% bootstrap_messages %}
                 <div class="table-responsive">
@@ -35,8 +46,7 @@
                                     <td>{{ producto.tipo }}</td>
                                     <td>{{ producto.stock }}</td>
                                     <td>
-                                        <a class="btn btn-success btn-sm" href="{% url 'entry' producto.id %}">Entrada</a>
-                                        <a class="btn btn-danger btn-sm" href="{% url 'discharge' producto.id %}">Salida</a>                                   
+                                        <a class="btn btn-success btn-sm" href="{% url 'in_product' ingreso.id producto.id %}">Añadir al carro</a>                              
                                     </td>
                                 </tr>
                             {% endfor %}

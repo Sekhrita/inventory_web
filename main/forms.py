@@ -45,22 +45,22 @@ class IngresoForm(forms.ModelForm):
 
     class Meta:
         model = Ingreso
-        fields = ('proveedor',)
+        fields = ['proveedor']
 
 class IngresoProductoForm(forms.ModelForm):
 
     class Meta:
         model = IngresoProducto
-        fields = ('cantIngreso',)
+        fields = ['cantIngreso']
 
 class EgresoForm(forms.ModelForm):
 
     class Meta:
         model = Egreso
-        fields = ('cliente',)
+        fields = ['cliente']
 
 class EgresoProductoForm(forms.ModelForm):
 
     class Meta:
         model = EgresoProducto
-        fields = ('cantEgreso',)
+        fields = ['cantEgreso']

@@ -1,7 +1,29 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+
+
+#Modelo: Cliente
+class Cliente(models.Model):
+    nombre = models.CharField(max_length = 100)
+    apellidoPaterno = models.CharField(max_length = 100)
+    apellidoMaterno = models.CharField(max_length = 100)
+    run = models.CharField(max_length = 100)
+    correo = models.EmailField(max_length = 254)
+
+    def __str__(self):
+        return self.run
+    
+
+#Modelo: Proveedor
+class Proveedor(models.Model):
+    nombre = models.CharField(max_length = 100)
+    rut = models.CharField(max_length = 100)
+    correo = models.EmailField(max_length = 254)
+    direccion = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.nombre
+    
 
 #Modelo: Tipo de producto
 class Tipo(models.Model):
@@ -35,78 +57,49 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
-
-
-
-
-#Modelo: Cliente
-class Cliente(models.Model):
-    nombre = models.CharField(max_length = 100)
-    apellidoPaterno = models.CharField(max_length = 100)
-    apellidoMaterno = models.CharField(max_length = 100)
-    run = models.CharField(max_length = 100)
-    correo = models.EmailField(max_length = 254)
-
-    def __str__(self):
-        return self.run
     
 
-#Modelo: Proveedor
-class Proveedor(models.Model):
-    nombre = models.CharField(max_length = 100)
-    rut = models.CharField(max_length = 100)
-    correo = models.EmailField(max_length = 254)
-    direccion = models.CharField(max_length = 100)
+#Modelo: Egreso
+class Ingreso(models.Model):
+    proveedor = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
+
+    fechaMovimiento = models.DateField(default=timezone.now)
+    fechaSistema = models.DateTimeField(auto_now_add = True)
+    gestor = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
-        return self.nombre
-    
+        return self.proveedor
+
+#Modelo: Egreso
+class IngresoProducto(models.Model):
+    ingreso = models.ForeignKey(Ingreso, on_delete = models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+
+    cantIngreso = models.PositiveBigIntegerField()
+
+    def __str__(self):
+        return f"{self.cantIngreso} x {self.producto.nombre} x {self.ingreso}"
 
 
 
 #Modelo: Egreso
 class Egreso(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+
     fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
     gestor = models.CharField(max_length = 100, default="Anonimo")
 
     def __str__(self):
-        return self.producto
+        return self.cliente
     
-
-#Modelo: Ingreso
-class Ingreso(models.Model):
-    proveedor = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    fechaMovimiento = models.DateField(default=timezone.now)
-    fechaSistema = models.DateTimeField(auto_now_add = True)
-    gestor = models.CharField(max_length = 100, default="Anonimo")
-
-    def __str__(self):
-        return self.producto
-    
-
-
 
 #Modelo: Egreso
 class EgresoProducto(models.Model):
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
     egreso = models.ForeignKey(Egreso, on_delete = models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
 
     cantEgreso = models.PositiveBigIntegerField()
 
     def __str__(self):
-        return self.producto
-    
-
-#Modelo: Ingreso
-class IngresoProducto(models.Model):
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    ingreso = models.ForeignKey(Ingreso, on_delete = models.CASCADE)
-
-    cantIngreso = models.PositiveBigIntegerField()
-
-    def __str__(self):
-        return self.producto
+        return f"{self.cantEgreso} x {self.producto.nombre} x {self.egreso}"
