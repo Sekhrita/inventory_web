@@ -669,3 +669,51 @@ def confirm_cart_management_discharge(request,cart):
 
 
     return redirect('management')
+
+
+@login_required
+def list_management(request):
+    ingresos = Ingreso.objects.all()
+    egresos = Egreso.objects.all()
+
+    productos = Producto.objects.all()
+    
+    contexto = {
+        'ingresos': ingresos,
+        'egresos': egresos,
+        'productos': productos,
+    }
+    return render(request, 'main/product/product_gestion/list_management.html', contexto)
+
+
+@login_required
+def vis_management_entry(request,cart):
+    ingreso = Ingreso.objects.get(id=cart)
+
+    proveedores = Proveedor.objects.all()
+    productos = Producto.objects.all()
+    ingresosproductos = IngresoProducto.objects.all()
+    
+    contexto = {
+        'ingreso': ingreso,
+        'proveedores': proveedores,
+        'productos': productos,
+        'ingresosproductos': ingresosproductos,
+    }
+    return render(request, 'main/product/product_gestion/vis_management_entry.html', contexto)
+
+@login_required
+def vis_management_discharge(request,cart):
+    egreso = Egreso.objects.get(id=cart)
+
+    proveedores = Proveedor.objects.all()
+    productos = Producto.objects.all()
+    egresosproductos = EgresoProducto.objects.all()
+    
+    contexto = {
+        'egreso': egreso,
+        'proveedores': proveedores,
+        'productos': productos,
+        'egresosproductos': egresosproductos,
+    }
+    return render(request, 'main/product/product_gestion/vis_management_discharge.html', contexto)

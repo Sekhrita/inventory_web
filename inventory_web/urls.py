@@ -65,7 +65,9 @@ urlpatterns = [
     path('confirm_cart_management_discharge/<int:cart>', confirm_cart_management_discharge, name='confirm_cart_management_discharge'),
 
     #Sección: Movimientos de inventario (historial)
-
+    path('list_management/', list_management, name = 'list_management'),
+    path('vis_management_entry/<int:cart>', vis_management_entry, name = 'vis_management_entry'),
+    path('vis_management_discharge/<int:cart>', vis_management_discharge, name = 'vis_management_discharge'),
 
     #Sección: Datos (cliente)
     path('client/', list_client, name = 'list_client'),
