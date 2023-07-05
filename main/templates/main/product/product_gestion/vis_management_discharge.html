@@ -11,20 +11,36 @@
                 <h1>Ver egreso</h1>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
-                <a class="btn btn-dark" href="{% url 'list_management' %}"> Volver</a>                              
+        <div class="row mb-3">
+            <div class="col-3">
+                <h3><i class="fa-solid fa-user"></i> Nombre completo:</h3><br>
             </div>
-        </div>
+            <div class="col-9">
+                <input class="form-control" type="text" disabled name="radio" value="{{egreso.cliente.nombre}} {{egreso.cliente.apellidoPaterno}} {{egreso.cliente.apellidoMaterno}}"/><br>
+            </div>
+            <div class="col-3">
+                <h3><i class="fa-solid fa-id-card-clip"></i> RUN:</h3><br>
+            </div>
+            <div class="col-9">
+                <input class="form-control" type="text" disabled name="radio" value="{{egreso.cliente.run}}"/><br>
+            </div>
+            <div class="col-3">
+                <h3><i class="fa-solid fa-envelope"></i> Correo electrónico:</h3><br>
+            </div>
+            <div class="col-9">
+                <input class="form-control" type="text" disabled name="radio" value="{{egreso.cliente.correo}}"/><br>
+            </div>
+            <div class="col-3">
+                <h3><i class="fa-solid fa-shield-halved"></i> Supervisor del movimiento:</h3><br>
+            </div>
+            <div class="col-9">
+                <input class="form-control" type="text" disabled name="radio" value="{{egreso.gestor}}"/><br>
+            </div>
 
-        <div class="row">
-            <div class="col">
-                <h4> ->Datos generales</h4><br>
-                <h5> ->Nombre completo: {{egreso.cliente.nombre}} {{egreso.cliente.apellidoPaterno}} {{egreso.cliente.apellidoMaterno}}</h5><br>
-                <h5> ->Run: {{egreso.cliente.run}}</h5><br>
-                <h5> ->Correo: {{egreso.cliente.correo}}</h5><br>
-                <h5> ->Supervisor del movimiento: {{egreso.gestor}}</h5><br>
+            <div class="row">
+                <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
+                    <a class="btn btn-dark" href="{% url 'list_management' %}"> Volver</a>                              
+                </div>
             </div>
         </div>
 
@@ -36,10 +52,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Producto</th>
-                                <th>Tipo</th>
-                                <th>Magnitud del movimiento</th>
-                                <th>Fecha de movimiento</th>
+                                <th>PRODUCTO</th>
+                                <th>TIPO</th>
+                                <th>MAGNITUD DEL MOVIMIENTO</th>
+                                <th>FECHA DE MOVIMIENTO</th>
                             </tr>
                         </thead>
                         
