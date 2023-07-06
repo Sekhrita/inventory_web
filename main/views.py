@@ -23,7 +23,6 @@ from .forms import IngresoProductoForm
 from .forms import EgresoForm
 from .forms import EgresoProductoForm
 
-
 from datetime import datetime
 
 # Create your views here.
@@ -38,9 +37,6 @@ def explain_lab(request):
 @login_required
 def show_lab(request):
     return render(request, 'main/show_lab.html')
-
-
-
 
 @login_required
 def list_product(request):
