@@ -14,7 +14,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <div class="row">
         <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
             <a class="btn btn-dark" href="{% url 'list_type' %}"> Volver</a>                              
@@ -28,39 +27,6 @@
             <h3> ->Fecha de creación: {{tipo.fecha_creacion}}</h3><br>
             <h3> ->Fecha de edición: {{tipo.fecha_edicion}}</h3><br>
             <h3> ->Encargado: {{tipo.encargado}}</h3><br>
-=======
-    <div class="row mb-3">    
-        <div class="col-3">
-            <h3><i class="fa-solid fa-clipboard-user"></i> Nombre:</h3><br>
->>>>>>> 511148a4f2e349e51a9226903877beb6b8c1787a
         </div>
-        <div class="col-9">
-            <input class="form-control" type="text" disabled name="radio" value="{{tipo.nombre}}"/><br>
-        </div>
-        <div class="col-3">
-            <h3><i class="fa-solid fa-bars"></i> Descripción:</h3><br>
-        </div>
-        <div class="col-9">
-            <textarea disabled class="form-control" name="radio">{{tipo.descripcion}}</textarea><br>
-        </div>
-        <div class="col-3">
-            <h3><i class="fa-solid fa-calendar-days"></i> Fecha de creación:</h3><br>
-        </div>
-        <div class="col-9">
-            <input class="form-control" type="text" disabled name="radio" value="{{tipo.fecha_creacion}}"/><br>
-        </div>
-        <div class="col-3">
-            <h3><i class="fa-solid fa-calendar-days"></i> Fecha de edición:</h3><br>
-        </div>
-        <div class="col-9">
-            <input class="form-control" type="text" disabled name="radio" value="{{tipo.fecha_edicion}}"/><br>
-        </div>
-        <div class="col-3">
-            <h3><i class="fa-solid fa-user"></i> Encargado:</h3><br> 
-        </div>
-        <div class="col-9">
-            <input class="form-control" type="text" disabled name="radio" value="{{tipo.encargado}}"/><br>
-        </div>
-    
     </div>
 {% endblock %}
