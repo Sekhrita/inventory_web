@@ -391,6 +391,7 @@ def entry(request,pk):
     ingreso_form = IngresoForm()
     ingresoproducto_form = IngresoProductoForm()
     contexto = {
+        'producto': producto,
         'formulario_1': IngresoForm,
         'formulario_2': IngresoProductoForm,
     }
@@ -460,6 +461,7 @@ def in_product(request,cart,pk):
 
     ingresoproducto_form = IngresoProductoForm()
     contexto = {
+        'producto': producto,
         'formulario': IngresoProductoForm,
         'ingreso': ingreso,
     }    
@@ -517,6 +519,7 @@ def discharge(request,pk):
     egreso_form = EgresoForm()
     egresoproducto_form = EgresoProductoForm()
     contexto = {
+        'producto': producto,
         'formulario_1': EgresoForm,
         'formulario_2': EgresoProductoForm,
     }
@@ -594,6 +597,7 @@ def out_product(request,cart,pk):
 
     egresoproducto_form = EgresoProductoForm()
     contexto = {
+        'producto': producto,
         'formulario': EgresoProductoForm,
         'egreso': egreso,
     }    
