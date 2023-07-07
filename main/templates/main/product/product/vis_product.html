@@ -4,23 +4,33 @@
 
 {% load bootstrap5 %}
 
-
 {% block title %} Visualizar producto {% endblock %}
 
 
 {% block content %}
     <div class="row">
-        <div class="col border-bottom">      
+        <div class="col border-bottom">
             <h1>Visualizar producto</h1>
         </div>
     </div>
-    <div class="row mb-3">
-        <div class="col-3">
-            <h3><i class="fa-solid fa-clipboard-user"></i> Nombre:</h3><br>
+
+    <div class="row">
+        <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
+            <a class="btn btn-dark" href="{% url 'list_product' %}"> Volver</a>                              
         </div>
-        <div class="col-9">
-            <input class="form-control" type="text" disabled name="radio" value="{{producto.nombre}}"/><br>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3> ->Nombre: {{producto.nombre}}</h3><br>
+            <h3> ->Tipo: {{producto.tipo}}</h3><br>
+            <h3> ->Descripción: {{producto.descripcion}}</h3><br>
+            <h3> ->Stock: {{producto.stock}}</h3><br>
+            <h3> ->Fecha de creación: {{producto.fecha_creacion}}</h3><br>
+            <h3> ->Fecha de edición: {{producto.fecha_edicion}}</h3><br>
+            <h3> ->Encargado: {{producto.encargado}}</h3><br> 
         </div>
+<<<<<<< HEAD
         <div class="col-3">
             <h3><i class="fa-solid fa-tag"></i> Tipo:</h3><br>
         </div>
@@ -59,4 +69,7 @@
         </div>    
     </div>  
 
+=======
+    </div>
+>>>>>>> 124cbdfe741cd1df782f5dbb13af45844fa4eae1
 {% endblock %}

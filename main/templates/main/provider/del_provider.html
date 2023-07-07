@@ -15,12 +15,13 @@
         <hr>
         <form method="POST">
             <div class="alert alert-danger">
-                <h4>¿Estás seguro que quieres eliminar "{{ proveedor.nombre }} con RUT [{{ proveedor.rut }}]" como proveedor?</h4>
+                <h4>¿Estás seguro que quieres eliminar "{{ proveedor.nombre }}" con RUT [{{ proveedor.rut }}] como proveedor?</h4>
             </div>
             {% csrf_token %}
             {{ formulario }}
             <a class="btn btn-secondary btn-sm" href="{% url 'list_provider' %}">Cancelar</a>
             <input class="btn btn-danger btn-sm" type="submit" value="Confirmar">
+            <script>alert("Cuidado: Está eliminado un proveedor");</script>
         </form>
     </div>
 {% endblock %}

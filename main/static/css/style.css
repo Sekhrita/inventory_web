@@ -1,9 +1,3 @@
-:root {
-    --primary: #009CFF;
-    --light: #F3F6F9;
-    --dark: #191C24;
-}
-
 html {
     height: 100%;
     scroll-behavior: smooth;
@@ -19,7 +13,10 @@ body {
     text-decoration: none;
     list-style: none;
     background-size: cover;
-    background-image: linear-gradient(to top, #ddf3f0, #cfebec, #c1e2e8, #b6d9e6, #adcfe3);
+    background: linear-gradient(355deg, #ffc9b1 0, #ffad98 6.25%, 
+    #ffa69b 12.5%, #ff8a8a 18.75%, #ff8190 25%, #ff7d9b 31.25%, #ff83af 37.5%, 
+    #ff89c0 43.75%, #ff82cd 50%, #ff81dd 56.25%, #ff7cf4 62.5%, #ec80ff 68.75%, 
+    #c97dff 75%, #a179ff 81.25%, #6f80ff 87.5%, #4885ff 93.75%, #005eff 100%);
 }/*https://cssgradient.io/*/
 
 
@@ -68,7 +65,7 @@ nav {
   fill: currentColor;
 }
 .transparence_navbar_lateral{
-    background-color: var(--light);   
+    background-color: rgba(0, 0, 0, 1);   
 }
 
 .nav-scroller {
