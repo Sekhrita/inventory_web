@@ -1,8 +1,8 @@
 {% load static %}
 
 <!-- Creación del nav superior -->
-<header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-dark " href="/">
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="/">
         <img src="{% static '_img/logo/icon_grupo3_renace_mod_END.png' %}" alt="icon developers" width="50" height="45">
         iProduct
     </a>
@@ -16,7 +16,7 @@
     <div class="nav-toggler dropdown" style="padding: 16px; margin-right: 25px;">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src={{ user.imagen.url }} alt="user_icon" width="30" height="30" class="rounded-circle">
-            <span class="d-none d-sm-inline mx-1 text-dark "> {{user.get_username}}</span>
+            <span class="d-none d-sm-inline mx-1"> {{user.get_username}}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-right text-small text-white">
             <li class="dropdown-item">

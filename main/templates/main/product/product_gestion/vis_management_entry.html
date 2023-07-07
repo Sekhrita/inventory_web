@@ -12,38 +12,22 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-3">
-                <h3><i class="fa-solid fa-user"></i> Nombre completo:</h3><br>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text" disabled name="radio" value="{{ingreso.proveedor.nombre}}"/><br>
-            </div>
-            <div class="col-3">
-                <h3><i class="fa-solid fa-id-card-clip"></i> RUT:</h3><br>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text" disabled name="radio" value="{{ingreso.proveedor.rut}}"/><br>
-            </div>
-            <div class="col-3">
-                <h3><i class="fa-solid fa-envelope"></i> Correo electrónico:</h3><br>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text" disabled name="radio" value="{{ingreso.proveedor.correo}}"/><br>
-            </div>
-            <div class="col-3">
-                <h3><i class="fa-solid fa-shield-halved"></i> Supervisor del movimiento:</h3><br>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text" disabled name="radio" value="{{ingreso.gestor}}"/><br>
-            </div>
-
-            <div class="row">
-                <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
-                    <a class="btn btn-dark" href="{% url 'list_management' %}"> Volver</a>                              
-                </div>
+        <div class="row">
+            <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
+                <a class="btn btn-dark" href="{% url 'list_management' %}"> Volver</a>                              
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <h4> ->Datos generales</h4><br>
+                <h5> ->Nombre: {{ingreso.proveedor.nombre}}</h5><br>
+                <h5> ->Rut: {{ingreso.proveedor.rut}}</h5><br>
+                <h5> ->Correo: {{ingreso.proveedor.correo}}</h5><br>
+                <h5> ->Supervisor del movimiento: {{ingreso.gestor}}</h5><br>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col">
                 {% bootstrap_messages %}
@@ -52,10 +36,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>PRODUCTO</th>
-                                <th>TIPO</th>
-                                <th>MAGNITUD DEL MOVIMIENTO</th>
-                                <th>FECHA DEL MOVIMIENTO</th>
+                                <th>Producto</th>
+                                <th>Tipo</th>
+                                <th>Magnitud del movimiento</th>
+                                <th>Fecha de movimiento</th>
                             </tr>
                         </thead>
                         
