@@ -14,14 +14,14 @@
     <div class="row">
         <hr>
         <form method="POST">
+            {% bootstrap_messages %}
             <div class="alert alert-danger">
                 <h4>¿Estás seguro que quieres eliminar "<b><i>{{ tipo.nombre }}</i></b>" como categoría?</h4>
             </div>
             {% csrf_token %}
             {{ formulario }}
             <a class="btn btn-secondary btn-sm" href="{% url 'list_type' %}">Cancelar</a>
-            <input class="btn btn-danger btn-sm" type="submit" value="Confirmar">
-            <script>alert("Cuidado: Está eliminado un objeto");</script>
+            <input class="btn btn-danger btn-sm" name="boton_confirmar_eliminar_type" type="submit" value="Confirmar">
         </form>
     </div>
 {% endblock %}

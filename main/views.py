@@ -104,11 +104,15 @@ def edit_product(request, pk):
     return render(request, 'main/product/product/edit_product.html', contexto)
 
 @login_required
-def del_product(request, pk):
-    producto = Producto.objects.get(id=pk)
-    if request.method == 'POST':
-        producto.delete()
-        return redirect('/product')
+def del_product(request, pk):        
+    try:
+        producto = Producto.objects.get(id=pk)
+        if request.method == 'POST':
+            producto.delete()
+            messages.success(request, 'El producto ha sido eliminado con éxito.')
+            return redirect('/product')
+    except Exception as e: 
+        messages.error(request, "El producto no puede eliminarse debido a que esta siendo utilizado en otra instancia.")
 
     contexto = {
         'producto': producto,
@@ -179,10 +183,14 @@ def edit_type(request, pk):
 
 @login_required
 def del_type(request, pk):
-    tipo = Tipo.objects.get(id=pk)
-    if request.method == 'POST':
-        tipo.delete()
-        return redirect('/type')
+    try:
+        tipo = Tipo.objects.get(id=pk)
+        if request.method == 'POST':
+            tipo.delete()
+            messages.success(request, 'La categoría ha sido eliminada con éxito.')
+            return redirect('/type')
+    except Exception as e: 
+        messages.error(request, "La categoría no puede eliminarse debido a que esta siendo utilizada en otra instancia.")
 
     contexto = {
         'tipo': tipo,
@@ -244,10 +252,14 @@ def edit_client(request, pk):
 
 @login_required
 def del_client(request, pk):
-    cliente = Cliente.objects.get(id=pk)
-    if request.method == 'POST':
-        cliente.delete()
-        return redirect('/client')
+    try:
+        cliente = Cliente.objects.get(id=pk)
+        if request.method == 'POST':
+            cliente.delete()
+            messages.success(request, 'El cliente ha sido eliminado con éxito.')
+            return redirect('/client')
+    except Exception as e: 
+        messages.error(request, "El cliente no puede eliminarse debido a que esta siendo utilizado en otra instancia.")
 
     contexto = {
         'cliente': cliente,
@@ -309,11 +321,15 @@ def edit_provider(request, pk):
 
 @login_required
 def del_provider(request, pk):
-    proveedor = Proveedor.objects.get(id=pk)
-    if request.method == 'POST':
-        proveedor.delete()
-        return redirect('/provider')
-
+    try:
+        proveedor = Proveedor.objects.get(id=pk)
+        if request.method == 'POST':
+            proveedor.delete()
+            messages.success(request, 'El proveedor ha sido eliminado con éxito.')
+            return redirect('/provider')
+    except Exception as e: 
+        messages.error(request, "El proveedor no puede eliminarse debido a que esta siendo utilizado en otra instancia.")
+    
     contexto = {
         'proveedor': proveedor,
     }

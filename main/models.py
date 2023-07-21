@@ -61,7 +61,7 @@ class Producto(models.Model):
 
 #Modelo: Egreso
 class Ingreso(models.Model):
-    proveedor = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
+    proveedor = models.ForeignKey(Proveedor, on_delete = models.RESTRICT)
 
     fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
@@ -73,7 +73,7 @@ class Ingreso(models.Model):
 #Modelo: Egreso
 class IngresoProducto(models.Model):
     ingreso = models.ForeignKey(Ingreso, on_delete = models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete = models.RESTRICT)
 
     cantIngreso = models.PositiveBigIntegerField()
 
@@ -84,7 +84,7 @@ class IngresoProducto(models.Model):
 
 #Modelo: Egreso
 class Egreso(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete = models.RESTRICT)
 
     fechaMovimiento = models.DateField(default=timezone.now)
     fechaSistema = models.DateTimeField(auto_now_add = True)
@@ -96,8 +96,8 @@ class Egreso(models.Model):
 
 #Modelo: Egreso
 class EgresoProducto(models.Model):
-    egreso = models.ForeignKey(Egreso, on_delete = models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+    egreso = models.ForeignKey(Egreso, on_delete = models.RESTRICT)
+    producto = models.ForeignKey(Producto, on_delete = models.RESTRICT)
 
     cantEgreso = models.PositiveBigIntegerField()
 
