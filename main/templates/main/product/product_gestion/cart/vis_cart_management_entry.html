@@ -11,7 +11,6 @@
                 <h1>Ver carrito</h1>
             </div>
         </div>
-
         <div class="row">
             <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
                 <form method="POST">
@@ -21,7 +20,6 @@
                 </form>
             </div>
         </div>
-
         <div class="row">
             <div class="col">
                 {% bootstrap_messages %}
@@ -34,8 +32,7 @@
                                 <th>Stock total</th>
                                 <th>Cantidad en el carrito</th>
                             </tr>
-                        </thead>
-                        
+                        </thead>  
                         <tbody>
                             {% for ingresoproducto in ingresosproductos %}
                                 {% for producto in productos %}

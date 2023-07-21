@@ -627,7 +627,6 @@ def out_product(request,cart,pk):
     }    
     return render(request, 'main/product/product_gestion/out_product/out_product.html', contexto)   
 
-
 @login_required
 def vis_cart_management_entry(request,cart):
     ingreso = Ingreso.objects.get(id=cart)
