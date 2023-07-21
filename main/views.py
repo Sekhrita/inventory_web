@@ -25,6 +25,9 @@ from .forms import EgresoProductoForm
 
 from datetime import datetime
 
+from django.core.paginator import Paginator
+from django.shortcuts import render
+
 # Create your views here.
 @login_required
 def index(request):
@@ -41,11 +44,15 @@ def show_lab(request):
 @login_required
 def list_product(request):
     productos = Producto.objects.all()
-    
+
+    paginator = Paginator(productos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/product/product/list_product.html', {'page_obj': page_obj})
     contexto = {
         'productos':productos
     }   
-    return render(request, 'main/product/product/list_product.html', contexto)
+    #return render(request, 'main/product/product/list_product.html', contexto)
 
 @login_required
 def add_product(request):
@@ -108,17 +115,18 @@ def del_product(request, pk):
     }
     return render(request, 'main/product/product/del_product.html', contexto)
 
-
-
-
 @login_required
 def list_type(request):
     tipos = Tipo.objects.all()
 
+    paginator = Paginator(tipos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/type/list_type.html', {'page_obj': page_obj})
     contexto = {
         'tipos': tipos,
     }
-    return render(request, 'main/type/list_type.html', contexto)
+    #return render(request, 'main/type/list_type.html', contexto)
 
 @login_required
 def add_type(request):
@@ -181,17 +189,18 @@ def del_type(request, pk):
     }
     return render(request, 'main/type/del_type.html', contexto)
 
-
-
-
 @login_required
 def list_client(request):
     clientes = Cliente.objects.all()
-
+    
+    paginator = Paginator(clientes, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/client/list_client.html', {'page_obj': page_obj})
     contexto = {
         'clientes': clientes,
     }
-    return render(request, 'main/client/list_client.html', contexto)
+    #return render(request, 'main/client/list_client.html', contexto)
 
 @login_required
 def add_client(request):
@@ -245,17 +254,18 @@ def del_client(request, pk):
     }
     return render(request, 'main/client/del_client.html', contexto)
 
-
-
-
 @login_required
 def list_provider(request):
     proveedores = Proveedor.objects.all()
     
+    paginator = Paginator(proveedores, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/provider/list_provider.html', {'page_obj': page_obj})
     contexto = {
         'proveedores':proveedores
     }   
-    return render(request, 'main/provider/list_provider.html', contexto)
+    #return render(request, 'main/provider/list_provider.html', contexto)
 
 @login_required
 def add_provider(request):
@@ -309,9 +319,6 @@ def del_provider(request, pk):
     }
     return render(request, 'main/provider/del_provider.html', contexto)
 
-
-
-
 def registro(request):
     if request.method == 'POST':
         usuario_form = UserForm(request.POST)
@@ -332,16 +339,17 @@ def registro(request):
     }
     return render(request, 'registration/registro.html', contexto)
 
-
-
 @login_required
 def management(request):
     productos = Producto.objects.all()
-    
+    paginator = Paginator(productos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/product/product_gestion/management.html', {'page_obj': page_obj})
     contexto = {
         'productos':productos
     }   
-    return render(request, 'main/product/product_gestion/management.html', contexto)
+    #return render(request, 'main/product/product_gestion/management.html', contexto)
 
 @login_required
 def entry(request,pk):
@@ -670,12 +678,10 @@ def confirm_cart_management_discharge(request,cart):
 
     return redirect('management')
 
-
 @login_required
 def list_management(request):
     ingresos = Ingreso.objects.all()
     egresos = Egreso.objects.all()
-
     productos = Producto.objects.all()
     
     contexto = {
@@ -684,7 +690,6 @@ def list_management(request):
         'productos': productos,
     }
     return render(request, 'main/product/product_gestion/list_management.html', contexto)
-
 
 @login_required
 def vis_management_entry(request,cart):

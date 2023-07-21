@@ -11,13 +11,11 @@
                 <h1><i class="fa-solid fa-box-open"></i> PRODUCTOS</h1>
             </div>
         </div>
-
         <div class="row">
             <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
-                <a href="/add_product" class="text-decoration-none text-black"><button type="button" class="btn btn-success">+</button><b> Añadir producto</b></a>
+                <a href="/add_product" class="text-decoration-none text-black"><button type="button" class="btn btn-success">[<i class="fa-solid fa-plus"></i>] Añadir producto</button><b></b></a>
             </div>
         </div>
-
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
@@ -31,9 +29,8 @@
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
-                        
                         <tbody>
-                            {% for producto in productos %}
+                            {% for producto in page_obj %}
                                 <tr>
                                     <td>{{ producto.id }}</td>
                                     <td>{{ producto.nombre }}</td>
@@ -49,8 +46,24 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1"><button style="background-color:white" class="btn button success"><i class="fa-solid fa-forward-fast fa-rotate-180"></i> Página inicial</button></a>
+                            <a href="?page={{ page_obj.previous_page_number }}"><button style="background-color:white" class="btn button success"><i class="fa-solid fa-circle-left"></i> Página anterior</button></a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                        </span>
+                
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}"><button style="background-color:white" class="btn button success">Siguiente página <i class="fa-solid fa-circle-left fa-rotate-180"></i></i></button></a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}"><button style="background-color:white" class="btn button success">Página final <i class="fa-solid fa-forward-fast"></i></button></a>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
-      
 {% endblock %}
