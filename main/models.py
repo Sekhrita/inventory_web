@@ -11,7 +11,7 @@ class Cliente(models.Model):
     correo = models.EmailField(max_length = 254)
 
     def __str__(self):
-        return self.run
+        return f"[{self.run}] {self.nombre} "
     
 
 #Modelo: Proveedor
@@ -22,7 +22,7 @@ class Proveedor(models.Model):
     direccion = models.CharField(max_length = 100)
 
     def __str__(self):
-        return self.nombre
+        return f"[{self.rut}] {self.nombre}"
     
 
 #Modelo: Tipo de producto
@@ -96,10 +96,10 @@ class Egreso(models.Model):
 
 #Modelo: Egreso
 class EgresoProducto(models.Model):
-    egreso = models.ForeignKey(Egreso, on_delete = models.RESTRICT)
+    egreso = models.ForeignKey(Egreso, on_delete = models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete = models.RESTRICT)
 
     cantEgreso = models.PositiveBigIntegerField()
 
     def __str__(self):
-        return f"{self.cantEgreso} x {self.producto.nombre} x {self.egreso}"
+        return f"{self.cantEgreso} - {self.producto.nombre} - {self.egreso}"

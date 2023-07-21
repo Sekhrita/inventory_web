@@ -12,48 +12,33 @@
             </div>
         </div>
         <div class="row">
+            <div class="col" style="padding-top: 5px; padding-bottom: 5px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="list_entry" class="btn btn-success"> Ingresos</button>
+                    <button type="submit" name="list_discharge" class="btn btn-danger"> Egresos</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>INTERACTOR</th>
-                                <th>TIPO DE MOVMIENTO</th>
-                                <th>FECHA DE MOVIMIENTO</th>
-                                <th>GESTOR</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ingreso in ingresos %}
-                                <tr>
-                                    <td>{{ ingreso.id }}</td>
-                                    <td>{{ ingreso.proveedor }}</td>
-                                    <td>Ingreso</td>
-                                    <td>{{ ingreso.fechaMovimiento }}</td>
-                                    <td>{{ ingreso.gestor }}</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm" href="{% url 'vis_management_entry' ingreso.id %}"><span data-feather="eye" class="align-text-bottom"></span> Ver</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-
-                            {% for egreso in egresos %}
-                                <tr>
-                                    <td>{{ egreso.id }}</td>
-                                    <td>{{ egreso.cliente }}</td>
-                                    <td>Egreso</td>
-                                    <td>{{ egreso.fechaMovimiento }}</td>
-                                    <td>{{ egreso.gestor }}</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm" href="{% url 'vis_management_discharge' egreso.id %}"><span data-feather="eye" class="align-text-bottom"></span> Ver</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                <div id="mensaje">
+                    <p class="mb-0">Seleccione el tipo de movimiento a listar con los botones</p>
                 </div>
+
+                <style>
+                    #mensaje {
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 70px;
+                        border: 1px solid red;
+                        border-radius: 10px;
+                        background-color: rgba(255, 0, 0, 0.3);
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                </style>
             </div>
         </div>
     </div>

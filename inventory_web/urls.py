@@ -66,6 +66,8 @@ urlpatterns = [
 
     #Sección: Movimientos de inventario (historial)
     path('list_management/', list_management, name = 'list_management'),
+    path('list_management_entry/', list_management_entry, name = 'list_management_entry'),
+    path('list_management_discharge/', list_management_discharge, name = 'list_management_discharge'),
     path('vis_management_entry/<int:cart>', vis_management_entry, name = 'vis_management_entry'),
     path('vis_management_discharge/<int:cart>', vis_management_discharge, name = 'vis_management_discharge'),
 

@@ -19,7 +19,8 @@ body {
     text-decoration: none;
     list-style: none;
     background-size: cover;
-    background-image: linear-gradient(to top, #ddf3f0, #cfebec, #c1e2e8, #b6d9e6, #adcfe3);
+    background-attachment: local;
+    background-color:  #c1e2e8;
 }/*https://cssgradient.io/*/
 
 

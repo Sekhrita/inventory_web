@@ -440,12 +440,17 @@ def cart_management_entry(request,pk):
 
             return redirect('management')
         
-
     productos = Producto.objects.all()
+        
+    paginator = Paginator(productos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+        
     
     contexto = {
         'productos':productos,
         'ingreso':ingreso,
+        'page_obj': page_obj,
     }     
     return render(request, 'main/product/product_gestion/cart/cart_management_entry.html', contexto)
 
@@ -571,9 +576,14 @@ def cart_management_discharge(request,pk):
         
     productos = Producto.objects.all()
     
+    paginator = Paginator(productos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     contexto = {
         'productos':productos,
         'egreso':egreso,
+        'page_obj': page_obj,
     }   
     return render(request, 'main/product/product_gestion/cart/cart_management_discharge.html', contexto)
 
@@ -698,13 +708,69 @@ def list_management(request):
     ingresos = Ingreso.objects.all()
     egresos = Egreso.objects.all()
     productos = Producto.objects.all()
-    
+
+    if request.method == 'POST':
+
+        if 'list_entry' in request.POST:
+            return redirect('list_management_entry')
+
+        elif 'list_discharge' in request.POST:
+            return redirect('list_management_discharge')
+
     contexto = {
         'ingresos': ingresos,
         'egresos': egresos,
         'productos': productos,
     }
     return render(request, 'main/product/product_gestion/list_management.html', contexto)
+
+@login_required
+def list_management_entry(request):
+    ingresos = Ingreso.objects.all()
+    productos = Producto.objects.all()
+
+    if request.method == 'POST':
+
+        if 'list_entry' in request.POST:
+            return redirect('list_management_entry')
+
+        elif 'list_discharge' in request.POST:
+            return redirect('list_management_discharge')
+
+    paginator = Paginator(ingresos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    contexto = {
+        'ingresos': ingresos,
+        'productos': productos,
+        'page_obj': page_obj,
+    }
+    return render(request, 'main/product/product_gestion/list_management_entry.html', contexto)
+
+@login_required
+def list_management_discharge(request):
+    egresos = Egreso.objects.all()
+    productos = Producto.objects.all()
+
+    if request.method == 'POST':
+
+        if 'list_entry' in request.POST:
+            return redirect('list_management_entry')
+
+        elif 'list_discharge' in request.POST:
+            return redirect('list_management_discharge')
+
+    paginator = Paginator(egresos, 10)  # Aquí indicamos que queremos 10 elementos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    contexto = {
+        'egresos': egresos,
+        'productos': productos,
+        'page_obj': page_obj,
+    }
+    return render(request, 'main/product/product_gestion/list_management_discharge.html', contexto)
 
 @login_required
 def vis_management_entry(request,cart):
